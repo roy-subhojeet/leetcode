@@ -23,9 +23,9 @@ int countVowelSubstrings(string w) {
                     vow -= 1; // decrement the unique vowel count
                 }
             }
-            cout << "k: "<< k << " i: " << i<<endl;
+            //cout << "k: "<< k << " i: " << i<<endl;
             cnt += k - j; // the number of valid substrings in the stream
-            cout << "count: " << cnt << endl;
+            //cout << "count: " << cnt << endl;
         }
         else {
             m['a'] = m['e'] = m['i'] = m['o'] = m['u'] = vow = 0; // reset when consonant encountered
