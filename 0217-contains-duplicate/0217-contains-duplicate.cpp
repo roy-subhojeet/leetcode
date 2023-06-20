@@ -7,7 +7,7 @@ public:
             int key = nums[i];
             mp[key]++;
         }
-        for (auto const& x: mp)
+        for (auto x: mp)
         {
             if (x.second > 1)
                 return true;
