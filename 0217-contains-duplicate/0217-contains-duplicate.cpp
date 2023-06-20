@@ -1,15 +1,15 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        map<int, vector<int>> mp;
+        map<int, int> mp;
         for(int i = 0; i < nums.size(); i++)
         {
             int key = nums[i];
-            mp[key].push_back(key);
+            mp[key]++;
         }
         for (auto const& x: mp)
         {
-            if (x.second.size() > 1)
+            if (x.second > 1)
                 return true;
         }
     return false;
