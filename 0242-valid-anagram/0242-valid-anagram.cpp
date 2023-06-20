@@ -1,34 +1,18 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        map<char, int> keyVal;
-        map<char, int> resVal;
-        if(s.length() != t.length())
-            return false;
-        for(int i = 0; i < s.size(); i++)
+        unordered_map<char, int> sMap;
+        unordered_map<char, int> tMap;
+        for(auto ch: s)
         {
-           auto itr = keyVal.find(s[i]);
-           if(itr == keyVal.end())
-           {
-               keyVal.insert(std::pair<char, int>(s[i], 1));
-           }
-           else
-           {
-               itr->second++;
-           }
+            sMap[ch]++;
         }
-        for(int i = 0; i < t.size(); i++)
+        for(auto ch: t)
         {
-           auto itr = resVal.find(t[i]);
-           if(itr == resVal.end())
-           {
-               resVal.insert(std::pair<char, int>(t[i], 1));
-           }
-           else
-           {
-               itr->second++;
-           }
+            tMap[ch]++;
         }
-    return (keyVal == resVal);
+        if(sMap == tMap)
+            return true;
+        return false;
     }
 };
