@@ -4,19 +4,16 @@ public:
         unordered_map<int, int> mp;
         int i = 0; 
         int find_elem = 0;
-        vector<int> res;
         for(auto elem: nums)
         {
             find_elem = target - elem;
             if(mp.find(find_elem) != mp.end())
             {
-                res.push_back(i);
-                res.push_back(mp[find_elem]);
-                return res;
+                return {i, mp[find_elem]};
             }
             mp[elem] = i;
             i++;
         }
-        return res;
+        return {0,0};
     }
 };
