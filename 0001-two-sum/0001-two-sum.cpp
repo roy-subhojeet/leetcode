@@ -2,6 +2,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> mp;
+        mp.reserve(nums.size()); // Reserve space for the map
         int i = 0; 
         for(auto elem: nums)
         {
@@ -10,9 +11,9 @@ public:
             {
                 return {i, mp[find_elem]};
             }
-            mp[elem] = i;
+            mp.emplace(elem, i); // Use emplace instead of operator[]
             i++;
         }
-        return {0,0};
+        throw runtime_error("No solution found"); // Throw an exception if no solution is found
     }
 };
