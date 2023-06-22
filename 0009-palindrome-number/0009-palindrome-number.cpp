@@ -4,7 +4,7 @@ public:
         if(x < 0)
             return false;
         int temp = x;
-        long int revVal = 0;
+        long revVal = 0;
         while(temp != 0)
         {
             revVal = revVal*10 + temp%10;
