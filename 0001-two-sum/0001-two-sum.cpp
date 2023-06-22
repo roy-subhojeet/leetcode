@@ -4,7 +4,7 @@ public:
         unordered_map<int, int> mp;
         mp.reserve(nums.size()); // Reserve space for the map
         int i = 0; 
-        for(auto elem: nums)
+        for(auto &elem: nums)
         {
             int find_elem = target - elem;
             if(mp.find(find_elem) != mp.end())
