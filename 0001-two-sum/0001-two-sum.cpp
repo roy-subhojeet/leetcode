@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> mp;
-        mp.reserve(nums.size()); // Reserve space for the map
+        //mp.reserve(nums.size()); // Reserve space for the map
         int i = 0; 
         for(auto &elem: nums)
         {
