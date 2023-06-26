@@ -2,12 +2,11 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
     int length = nums.size();
-    std::vector<int> answer(length);
+    std::vector<int> answer(length, 1);
 
     // answer[i] now contains the product of all numbers to the left
     // For the element at index '0', there are no elements to the left,
     // hence answer[0] = 1
-    answer[0] = 1;
     for (int i = 1; i < length; i++) {
         answer[i] = nums[i - 1] * answer[i - 1];
     }
@@ -23,5 +22,5 @@ public:
     }
 
     return answer;
-}
+    }
 };
