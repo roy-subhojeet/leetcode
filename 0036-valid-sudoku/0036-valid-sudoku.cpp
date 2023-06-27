@@ -16,14 +16,14 @@ public:
                     int n = (int)(c - '0') - 1; // Subtract '1' to make it 0-indexed
                     int box_index = (i / 3 ) * 3 + j / 3;
 
+                    // Check if this value has been already seen before
+                    if(rows[i][n] > 0 || columns[j][n] > 0 || boxes[box_index][n] > 0)
+                        return false;
+
                     // Keep the current cell value
                     rows[i][n]++;
                     columns[j][n]++;
                     boxes[box_index][n]++;
-
-                    // Check if this value has been already seen before
-                    if(rows[i][n] > 1 || columns[j][n] > 1 || boxes[box_index][n] > 1)
-                        return false;
                 }
             }
         }
