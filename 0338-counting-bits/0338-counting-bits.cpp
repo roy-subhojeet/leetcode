@@ -9,8 +9,6 @@ public:
             res[i] = res[i&(i-1)] + 1;
         }
         return res;
-    }
-
         /* O(nlog(n)) Sol 
         vector<int> res(n+1);
         if (n >=1)
@@ -29,7 +27,7 @@ public:
             }
             res[i] = count;
         }
-        return res; 
+        return res; */
     }
-    */
+    
 };
