@@ -6,7 +6,6 @@ public:
         {
             res = res << 1;
             res = res + ((n >> i) & 1);
-            cout << res << endl;
         }
         return res;
         
