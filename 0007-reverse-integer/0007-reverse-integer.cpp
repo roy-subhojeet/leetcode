@@ -11,6 +11,5 @@ public:
             num = num /10;
         }
         return res;
-        
     }
 };
