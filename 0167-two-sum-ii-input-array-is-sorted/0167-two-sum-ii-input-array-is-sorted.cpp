@@ -11,17 +11,11 @@ public:
             }
             else if((numbers[head] + numbers[tail]) > target)
             {
-                if(numbers[head] > numbers[tail])
-                    ++head;
-                else
-                    --tail;
+                --tail;
             }
             else
             {
-                if(numbers[head] > numbers[tail])
-                    --tail;
-                else
-                    ++head;
+                ++head;
             }
         }
         return {};
