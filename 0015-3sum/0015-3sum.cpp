@@ -29,8 +29,8 @@ public:
                     res.insert(res.end(), {nums[i], nums[head], nums[tail]});
                     result.push_back(res);
                     // Avoid duplicates when moving pointers
-                    //while(head < tail && nums[head] == nums[head + 1]) ++head;
-                    while(head < tail && nums[tail] == nums[tail - 1]) --tail;
+                    while(head < tail && nums[head] == nums[head + 1]) ++head;
+                    //while(head < tail && nums[tail] == nums[tail - 1]) --tail;
                     ++head;
                     --tail;
                 }
