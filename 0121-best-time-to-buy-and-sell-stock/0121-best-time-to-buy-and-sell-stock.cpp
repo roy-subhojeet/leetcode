@@ -1,20 +1,33 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int profit = 0;
-        int temp = 0;
-        priority_queue<int,vector<int>,greater<int> > q2;
-        for(auto itr = prices.begin(); itr < prices.end(); itr++)
+
+        int minProfit = 65535;
+        int maxProfit = 0;
+        for(auto &p : prices)
         {
-            q2.push(*itr);
-            if(itr != prices.end()-1)
-            {
-                temp = *(itr+1) - q2.top();
-                if(q2.top() < *(itr+1) && profit < temp)
-                    profit = temp;
-            }
+            minProfit = min(minProfit, p);
+            maxProfit = max(maxProfit, p - minProfit);
         }
-        return profit;
-        
+        return maxProfit;
+
+        /* First Logic that came to mind
+        int i = 0;
+        int maxProfit = 0;
+        for(auto & price: prices)
+        {
+            int k = i;
+            while(k!=0)
+            {
+                --k;
+                if(prices[k] < price)
+                {
+                    maxProfit = max(maxProfit, price - prices[k]);
+                }
+            }
+            ++i;
+        }
+        return maxProfit;
+        */
     }
 };
