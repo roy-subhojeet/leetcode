@@ -5,6 +5,21 @@ public:
         int left = 0;
         int right = 0;
         unordered_map<char , int> mp;
+
+        /* Optimised Sliding Window */
+
+        for(auto &st: s)
+        {
+            if(mp[s[right]] > 0)
+            {
+                left = max(mp[s[right]], left);
+            }
+            mp[s[right]] = right + 1;
+            ++right;
+            res = max (res, right - left);
+        }
+
+        /* Unoptimised sliding window
         for(auto &st: s)
         {
             while(mp[st] > 0) 
@@ -17,6 +32,7 @@ public:
             ++right;
             res = max(res, right - left);
         }
+        */
         return res;
     }
 };
