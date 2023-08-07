@@ -15,7 +15,7 @@ public:
             }
             //cout << "mid: " << nums[mid] << "left: " << nums[left] << "right: " << nums[right];
         }
-        if(nums[left] <= nums[right]) return nums[left];
-        return -1;
+        //if(nums[left] <= nums[right]) return nums[left];
+        return nums[left];
     }
 };
