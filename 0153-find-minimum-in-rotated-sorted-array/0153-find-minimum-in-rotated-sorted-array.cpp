@@ -5,7 +5,7 @@ public:
         while(left < right){
 
 
-            if(nums[left] <= nums[right]) return nums[left];
+            //if(nums[left] <= nums[right]) return nums[left];
 
             int mid = left + (right-left)/2;
             if(nums[mid] > nums[right]){
