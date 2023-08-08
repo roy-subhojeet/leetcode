@@ -20,12 +20,7 @@ public:
                 // Decrement the count of the left character in the window
                 charCount[leftChar]--;
                 // If the left character was contributing to maxCount, recalculate maxCount
-                if (charCount[leftChar] + 1 == maxCount) {
-                    maxCount = 0;
-                    for (const auto& entry : charCount) {
-                        maxCount = max(maxCount, entry.second);
-                    }
-                }
+
                 // Move the left pointer of the window
                 left++;
             }
