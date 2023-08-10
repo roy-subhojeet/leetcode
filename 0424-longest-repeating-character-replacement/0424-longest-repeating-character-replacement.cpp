@@ -1,36 +1,30 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        int n = s.size();
-        int left = 0, right = 0;
-        unordered_map<char, int> charCount;
-        int maxCount = 0; // To keep track of the max character count within the window
-        int maxLength = 0;
+        int i = 0;
+        int j = 0;
+        int maxChar = 0;
+        unordered_map<char, int> mp;
+        int res  = 0;
 
-        while (right < n) {
-            char currentChar = s[right];
-            // Increment the count of the current character
-            charCount[currentChar]++;
-            // Update maxCount if the current character's count is greater
-            maxCount = max(maxCount, charCount[currentChar]);
-
-            // Check if the number of replacements needed is greater than k
-            if (right - left + 1 - maxCount > k) {
-                char leftChar = s[left];
-                // Decrement the count of the left character in the window
-                charCount[leftChar]--;
-                // If the left character was contributing to maxCount, recalculate maxCount
-
-                // Move the left pointer of the window
-                left++;
+        for(auto &str: s)
+        {
+            ++mp[str];
+            maxChar = max(mp[str], maxChar);
+            if(j - i + 1 - maxChar > k)
+            {
+                --mp[s[i]];
+                int mpMax = 0;
+                for(auto &m: mp)
+                {
+                    mpMax = max(mpMax, m.second);
+                }
+                maxChar = mpMax;
+                ++i;
             }
-
-            // Update the maximum length found so far
-            maxLength = max(maxLength, right - left + 1);
-            // Move the right pointer of the window
-            right++;
+            ++j;
+            res = max(res, j - i);
         }
-
-        return maxLength;
+        return res;
     }
 };
