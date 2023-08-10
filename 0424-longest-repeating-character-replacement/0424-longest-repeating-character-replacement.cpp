@@ -22,8 +22,8 @@ public:
                 maxChar = mpMax;
                 ++i;
             }
+            res = max(res, j - i + 1);
             ++j;
-            res = max(res, j - i);
         }
         return res;
     }
