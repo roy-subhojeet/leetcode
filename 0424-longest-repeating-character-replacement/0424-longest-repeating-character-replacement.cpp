@@ -15,11 +15,13 @@ public:
             {
                 --mp[s[i]];
                 int mpMax = 0;
+                /* Optimisation trick: Observe Notes
                 for(auto &m: mp)
                 {
                     mpMax = max(mpMax, m.second);
                 }
                 maxChar = mpMax;
+                */
                 ++i;
             }
             res = max(res, j - i + 1);
