@@ -14,7 +14,12 @@ public:
             if(j - i + 1 - maxChar > k)
             {
                 --mp[s[i]];
-
+                int mpMax = 0;
+                for(auto &m: mp)
+                {
+                    mpMax = max(mpMax, m.second);
+                }
+                maxChar = mpMax;
                 ++i;
             }
             ++j;
