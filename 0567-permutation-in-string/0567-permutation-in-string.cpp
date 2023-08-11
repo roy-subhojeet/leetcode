@@ -2,6 +2,7 @@ class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
 
+        // optimised sliding window
         if (s1.size() > s2.size()) {
             return false;
         }
