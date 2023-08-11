@@ -5,11 +5,11 @@ public:
             return false;
         }
 
-        unordered_map<char, int> mpS1, window;
+        vector<int> mpS1(26, 0), window(26, 0);
 
         // Count the frequency of characters in s1
         for (auto &s : s1) {
-            mpS1[s]++;
+            mpS1[s - 'a']++;
         }
 
         // Create a window of s1.size() in s2
@@ -17,7 +17,7 @@ public:
         while (right < s2.size()) {
             char c = s2[right];
             right++;
-            window[c]++;
+            window[c - 'a']++;
 
             // When the window size is equal to s1's size, check the counts
             if (right - left == s1.size()) {
@@ -28,10 +28,7 @@ public:
                 // Slide the window to the right
                 char leftChar = s2[left];
                 left++;
-                window[leftChar]--;
-                if (window[leftChar] == 0) {
-                    window.erase(leftChar);
-                }
+                window[leftChar - 'a']--;
             }
         }
 
