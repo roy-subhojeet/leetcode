@@ -10,9 +10,6 @@ public:
 
         stack<char> st;
 
-        if(mp.find(s[0]) != mp.end())
-            return false;
-
         for(auto &c : s)
         {
             auto itr = mp.find(c);
