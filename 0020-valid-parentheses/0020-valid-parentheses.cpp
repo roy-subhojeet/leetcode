@@ -1,37 +1,32 @@
 class Solution {
 public:
     bool isValid(string s) {
-        map<char, char> charMap = {
-            { ')' , '(' },
-            { '}' , '{' },
-            { ']' , '[' }
+
+        unordered_map<char, char> mp {
+            {'}', '{'},
+            {')', '('},
+            {']', '['}
         };
-    vector<char> list;
-    for(auto ch: s)
-    {
-        if(list.empty() && charMap.count(ch))
-        {
+
+        stack<char> st;
+
+        if(mp.find(s[0]) != mp.end())
             return false;
-        }
-        else if(!charMap.count(ch))
+
+        for(auto &c : s)
         {
-            list.push_back(ch);
-        }
-        else if(!list.empty() && charMap.count(ch))
-        {
-            if(list.back() == charMap.find(ch)->second)
-                list.pop_back();
+            auto itr = mp.find(c);
+            if(itr != mp.end())
+            {
+                if(st.size() == 0 || itr->second != st.top()) return false;
+                st.pop();
+            }
             else
-                return false;
+            {
+                st.push(c);
+            }
         }
+
+        return st.size() == 0;
     }
-    if(list.empty())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-  }
 };
