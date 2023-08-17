@@ -1,73 +1,59 @@
-class Stack {
-private:
-    int* arr;
-    int capacity;
-    int topIndex;
+#include <cstddef>
+#include <limits.h>
 
-public:
-    Stack(int size) {
-        arr = new int[size];
-        capacity = size;
-        topIndex = -1;
+//template <typename T>
+class MinStack{
+    private:
+        struct Node{
+            int val;
+            Node *next;
+            int minVal = INT_MAX;
+        };
+    size_t stackSize = 0;
+    Node *topNode = nullptr; 
+
+    public:
+    MinStack(){}
+
+    ~ MinStack(){}
+    void push(const int &val)
+    {
+        cout << "h" << val << endl;
+        Node *newNode = new Node;
+        if(topNode && topNode->minVal < val)  newNode->minVal = topNode->minVal;
+        else 
+        {
+            cout << val << endl;
+            newNode->minVal = val;
+        }
+        newNode->val = val;
+        newNode->next = topNode;
+        topNode = newNode;
     }
 
-    ~Stack() {
-        delete[] arr;
-    }
-
-    void push(int val) {
-        if (topIndex < capacity - 1) {
-            arr[++topIndex] = val;
+    void pop()
+    {
+        if(topNode != nullptr)
+        {
+            Node *tempNode = topNode;
+            topNode = tempNode->next;
+            delete tempNode;
         }
     }
 
-    void pop() {
-        if (topIndex >= 0) {
-            topIndex--;
+    int top()
+    {
+        if(topNode != nullptr)
+        {
+            return topNode->val;
         }
+        return NULL;
     }
 
-    int top() {
-        if (topIndex >= 0) {
-            return arr[topIndex];
-        }
-        return -1;  // Error value, should handle this appropriately in real-world scenarios
+    int getMin()
+    {
+        if(topNode) return topNode->minVal;       
+        return NULL;
     }
 
-    bool empty() {
-        return topIndex == -1;
-    }
-};
-
-class MinStack {
-private:
-    Stack mainStack;
-    Stack minStack;
-
-public:
-    MinStack(int size = 30000) : mainStack(size), minStack(size) {}  // Default size set to 30000 as per problem constraints
-
-    void push(int val) {
-        mainStack.push(val);
-        if (minStack.empty() || val <= minStack.top()) {
-            minStack.push(val);
-        }
-    }
-
-    void pop() {
-        if (!mainStack.empty()) {
-            if (mainStack.top() == minStack.top()) {
-                minStack.pop();
-            }
-            mainStack.pop();
-        }
-    }
-
-    int top() {
-        return mainStack.top();
-    }
-
-    int getMin() {
-        return minStack.top();
-    }
 };
