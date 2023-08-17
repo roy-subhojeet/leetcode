@@ -15,15 +15,18 @@ class MinStack{
     public:
     MinStack(){}
 
-    ~ MinStack(){}
+    ~ MinStack(){
+        while(topNode)
+        {
+            this->pop();
+        }
+    }
     void push(const int &val)
     {
-        cout << "h" << val << endl;
         Node *newNode = new Node;
         if(topNode && topNode->minVal < val)  newNode->minVal = topNode->minVal;
         else 
         {
-            cout << val << endl;
             newNode->minVal = val;
         }
         newNode->val = val;
