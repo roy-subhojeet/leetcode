@@ -9,7 +9,7 @@ class MinStack{
             Node *next;
             int minVal = INT_MAX;
         };
-    size_t stackSize = 0;
+    //size_t stackSize = 0;
     Node *topNode = nullptr; 
 
     public:
