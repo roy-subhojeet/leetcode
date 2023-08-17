@@ -18,7 +18,7 @@ class MinStack{
     ~ MinStack(){
         while(topNode)
         {
-            this->pop();
+            pop();
         }
     }
     void push(const int &val)
