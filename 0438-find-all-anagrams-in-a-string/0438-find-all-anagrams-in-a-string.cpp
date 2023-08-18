@@ -4,11 +4,14 @@ public:
         if(p.size() > s.size())
             return {};
 
-        unordered_map<char, int> mp;
-        unordered_map<char, int> sMp;
+        //unordered_map<char, int> mp;
+        vector<int> mp(26, 0);
+
+        //unordered_map<char, int> sMp;
+        vector<int> sMp(26, 0);
         for(auto &c : p)
         {
-            ++mp[c];
+            ++mp[c - 'a'];
         }
         
         int right = 0;
@@ -19,12 +22,11 @@ public:
 
         while(right < s.size())
         {
-            ++sMp[s[right]];
+            ++sMp[s[right] - 'a'];
             if(right - left + 1 == N)
             {
                 if(sMp == mp) res.push_back(left);
-                --sMp[s[left]];
-                if(sMp[s[left]] == 0) sMp.erase(s[left]);
+                --sMp[s[left] - 'a'];
                 ++left;
             }
             ++right;
