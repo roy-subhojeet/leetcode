@@ -8,12 +8,12 @@ public:
             result.push_back(s);
             return;
         }
-        if(open < n) backtracking(n, close, open+1, s+"(");
+        if(open <= n) backtracking(n, close, open+1, s+"(");
         if(close < open) backtracking(n, close+1, open, s+")");
     }
     vector<string> generateParenthesis(int n) {
 
-        backtracking(n, 0, 0, "");
+        backtracking(n, 1, 1, "");
         return result;
     }
 private:
