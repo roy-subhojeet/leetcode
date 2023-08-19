@@ -1,7 +1,28 @@
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
+        int n = temperatures.size();
+        vector<int> arr(n, 0);
+        int warmest = 0;
 
+        for(int head = n-1; head >= 0; --head)
+        {
+            if(temperatures[head] >= warmest)
+            {
+                warmest = temperatures[head];
+                continue;
+            }
+
+            int next = 1;
+            while(temperatures[head] >= temperatures[head+next])
+            {
+                next += arr[head+next];
+            }
+            arr[head] = next;
+        }
+        return arr;
+        /* O(N) - Time Complexity
+           O(N) - Space Complexity
         stack<int> st;
         vector<int> res(temperatures.size(), 0);
 
@@ -13,6 +34,8 @@ public:
             st.push(i);
         }
         return res;
+        */
+
         /* initial attempt redundant checks
         stack<int> st;
         vector<int> res(temperatures.size(),0);
