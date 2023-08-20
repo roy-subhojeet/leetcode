@@ -4,6 +4,7 @@ using namespace std;
 class Solution {
 public:
     int minimumSum(int n, int k) {
+        /* O(N)
         unordered_set<int> st;  // Use a set to store numbers and allow O(1) average-time lookups.
 
         int ans = 0;  // This will hold our final answer (the sum of our k-avoiding array).
@@ -23,5 +24,32 @@ public:
         }
         
         return ans;  // Return the sum of our k-avoiding array.
+        */
+
+        // O(N^2)
+
+        vector<int> res;
+        int i = 1;
+        int ans = 0;
+        while(res.size() < n)
+        {
+            bool addFlag = true;
+            for(auto & nums: res)
+            {
+                if(i + nums == k) 
+                {
+                    addFlag = false; 
+                    break;
+                }
+            }
+            if(addFlag) 
+            {
+                res.push_back(i);
+                ans +=i;
+            }
+            ++i;
+        }
+        return ans;
+
     }
 };
