@@ -4,7 +4,7 @@ public:
 
         std::vector<int> result;
         int i = 1;
-        while (result.size() < static_cast<size_t>(n)) {
+        while (result.size() < n) {
             bool shouldAdd = true;
             for (int num : result) {
                 if (i + num == k) {
