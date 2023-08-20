@@ -1,25 +1,27 @@
+#include <unordered_set>
+using namespace std;
+
 class Solution {
 public:
     int minimumSum(int n, int k) {
+        unordered_set<int> st;  // Use a set to store numbers and allow O(1) average-time lookups.
 
-        std::vector<int> result;
-        int i = 1;
-        int sum = 0;
-        while (result.size() < n) {
-            bool shouldAdd = true;
-            for (int num : result) {
-                if (i + num == k) {
-                    shouldAdd = false;
-                    break;
-                }
+        int ans = 0;  // This will hold our final answer (the sum of our k-avoiding array).
+        
+        // Start from 1 and try to construct the array with n numbers.
+        // 'i' will be our candidate number to add to the array.
+        for(int i = 1; st.size() < n; ++i) {  
+
+            // Before adding 'i' to our set, check if 'k - i' exists in our set.
+            // If 'k - i' exists, then adding 'i' would create a pair that sums up to 'k'.
+            // The intuition is to avoid numbers that when added to existing numbers in our set will sum up to k.
+            if(st.find(k - i) == st.end()) {  
+
+                st.insert(i);  // If 'k - i' doesn't exist, it's safe to add 'i' to our set.
+                ans += i;  // Add the current 'i' to our answer.
             }
-            if (shouldAdd) {
-                result.push_back(i);
-                sum += i;
-            }
-            i++;
         }
-    
-        return sum;
+        
+        return ans;  // Return the sum of our k-avoiding array.
     }
 };
