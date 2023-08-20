@@ -3,7 +3,23 @@ using namespace std;
 
 class Solution {
 public:
+    int sumIntegersInRange(int a, int n) {
+        int sum = (n * (2 * a + (n - 1))) / 2;
+        return sum;
+    }
+    
     int minimumSum(int n, int k) {
+        int mid = k/2;
+        
+        if (n <= mid) return n*(n + 1)/2;
+        
+        int leftSum = mid * (mid + 1) / 2;
+        
+        int leftoverNums = n - mid;
+        
+        return leftSum + sumIntegersInRange(k, leftoverNums);
+
+
         /* O(N)
         unordered_set<int> st;  // Use a set to store numbers and allow O(1) average-time lookups.
 
@@ -26,7 +42,7 @@ public:
         return ans;  // Return the sum of our k-avoiding array.
         */
 
-        // O(N^2)
+        /* O(N^2)
 
         vector<int> res;
         int i = 1;
@@ -44,12 +60,14 @@ public:
             }
             if(addFlag) 
             {
+                cout << i;
                 res.push_back(i);
                 ans +=i;
             }
             ++i;
         }
         return ans;
+        */
 
     }
 };
