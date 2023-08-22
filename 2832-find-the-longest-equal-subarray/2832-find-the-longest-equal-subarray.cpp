@@ -12,7 +12,7 @@ public:
         {
             ++mp[nums[right]];
             maxCountNum = max(mp[nums[right]], maxCountNum);
-            while(right - left - maxCountNum >= k)
+            if(right - left - maxCountNum >= k)
             {
                 --mp[nums[left]];
                 ++left;
