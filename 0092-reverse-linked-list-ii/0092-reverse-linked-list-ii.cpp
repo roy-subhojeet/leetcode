@@ -5,20 +5,20 @@ public:
 
         int count = 1;
         ListNode * node = head;
-        ListNode *lp = nullptr;
-        ListNode* rp = nullptr;
+        ListNode *lPrev = nullptr;
+        ListNode* rPtr = nullptr;
 
         while(node)
         {
             ++count;
-            if(count == left) lp = node;
+            if(count == left) lPrev = node;
             node = node->next;
-            if(count == right) rp = node;
+            if(count == right) rPtr = node;
         }
 
-        ListNode * current = lp ? lp->next: head;
+        ListNode * current = lPrev ? lPrev->next: head;
         ListNode * next = current->next;
-        current->next = rp->next;
+        current->next = rPtr->next;
         ListNode * prev =  current;
         current = next;
         
@@ -29,8 +29,8 @@ public:
             prev = current;
             current = next;
         }
-        if(lp) lp->next = rp;
-        else head = rp;
+        if(lPrev) lPrev->next = rPtr;
+        else head = rPtr;
 
 
         return head;
