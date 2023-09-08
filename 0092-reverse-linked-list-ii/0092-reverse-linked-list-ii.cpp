@@ -8,15 +8,15 @@ public:
         ListNode *lp = nullptr;
         ListNode* rp = nullptr;
 
-        while(head)
+        while(node)
         {
             ++count;
-            if(count == left) lp = head;
-            head = head->next;
-            if(count == right) rp = head;
+            if(count == left) lp = node;
+            node = node->next;
+            if(count == right) rp = node;
         }
 
-        ListNode * current = lp ? lp->next: node;
+        ListNode * current = lp ? lp->next: head;
         ListNode * next = current->next;
         current->next = rp->next;
         ListNode * prev =  current;
@@ -30,10 +30,10 @@ public:
             current = next;
         }
         if(lp) lp->next = rp;
-        else node = rp;
+        else head = rp;
 
 
-        return node;
+        return head;
 
     }
 };
