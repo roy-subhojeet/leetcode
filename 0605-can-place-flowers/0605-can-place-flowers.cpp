@@ -24,8 +24,6 @@ public:
             }
             if(count >= n) return true;
         }
-        cout << count;
-       
 
         return false;
         
