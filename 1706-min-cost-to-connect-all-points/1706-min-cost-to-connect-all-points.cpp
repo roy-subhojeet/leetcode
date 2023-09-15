@@ -5,7 +5,7 @@ public:
         vector<int> visited(points.size(), 0);
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
         int ans = 0;
-        int edgesUsed = 0;
+        int edgesUsed = 0; //always Vertices - 1 for MST
         minHeap.push({0, 0});
 
         while(edgesUsed < points.size())
@@ -13,12 +13,9 @@ public:
             auto itr = minHeap.top();
             minHeap.pop();
             int current = itr.second;
-            if(visited[current]) continue;
+            if(visited[current]) continue; // using a single minHeap, skip already visited nodes/vertices for which the cost is min.
             visited[current] = 1;
             ans += itr.first;
-            
-            
-
             for(int j = 0; j < points.size(); ++j)
             {
                 if(visited[j]) continue;
