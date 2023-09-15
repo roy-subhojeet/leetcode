@@ -20,7 +20,6 @@ public:
             }
             else if(i-1 > 0 && i == size-1 && flowerbed[i] == 0 && flowerbed[i-1] == 0) 
             {
-                flowerbed[i] = 1;
                 ++count;
             }
             if(count >= n) return true;
