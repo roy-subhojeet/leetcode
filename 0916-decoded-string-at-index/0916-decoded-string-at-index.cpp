@@ -1,8 +1,6 @@
 class Solution {
 public:
     string decodeAtIndex(string s, int k) {
-
-        string a;
         long long cnt = 0;
         int N = s.size();
         for(auto & c : s)
