@@ -18,7 +18,7 @@ public:
             }
         }
         for (int i = N-1; i >=0; --i) {
-            k %= cnt;
+            k =  k%cnt;
             if (k == 0 && isalpha(s[i]))
                 return (string) "" + s[i];
 
