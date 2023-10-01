@@ -1,28 +1,36 @@
 class Solution {
 public:
     long long maximumTripletValue(vector<int>& nums) {
+        if(nums.size() < 3) return 0;
         int n = nums.size();
-        long long ans = 0;
-        vector<int> maxI(n, INT_MIN); 
-        vector<int> maxDiff(n, INT_MIN);
-
-
-        maxI[0] = nums[0];
-        for (int i = 1; i < n; ++i) {
-            maxI[i] = max(maxI[i - 1], nums[i]);
+        vector<int> maxArray(n, INT_MIN);
+        vector<int> maxDiff(n, INT_MAX);
+        vector<int> maxRight(n, INT_MIN);
+        maxArray[0] = nums[0];
+        for(int i = 1 ; i < n; ++i)
+        {
+            maxArray[i] = max(nums[i], maxArray[i-1]);
+        }
+        maxDiff[0] = maxArray[0] - nums[0];
+        int maxDif = INT_MIN;
+        int pos = 0;
+        for(int i = 1 ; i < n; ++i)
+        {
+            maxDiff[i] = max(maxArray[i] - nums[i], maxDiff[i-1]);
+        }
+        maxRight[n-1] = nums[n-1];
+        for(int i = n-2; i >= 0; --i)
+        {
+            maxRight[i] = max(nums[i], maxRight[i+1]);
         }
 
-
-        for (int j = 1; j < n; ++j) {
-            maxDiff[j] = max(maxDiff[j - 1], maxI[j - 1] - nums[j]);
+        long long ans = LLONG_MIN;
+        for(int i = 0; i < nums.size()-1; ++i)
+        {
+            ans = max((long long)maxDiff[i] * maxRight[i+1], ans);
         }
-
-        for (int k = 2; k < n; ++k) {
-            if (maxDiff[k - 1] > INT_MIN) {
-                ans = max(ans, (long long)maxDiff[k - 1] * nums[k]);
-            }
-        }
-
-        return ans;
+        
+        return ans>0 ? ans: 0;
+        
     }
 };
