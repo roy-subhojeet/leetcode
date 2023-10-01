@@ -24,6 +24,11 @@ public:
         {
             maxRight[i] = max(nums[i], maxRight[i+1]);
         }
+        long long ans = LLONG_MIN;
+        for(int i = 0; i < nums.size()-1; ++i)
+        {
+            ans = max((long long)maxDiff[i] * maxRight[i+1], ans);
+        }
         */
 
         long long ans = LLONG_MIN;
