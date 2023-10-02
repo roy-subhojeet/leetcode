@@ -6,6 +6,6 @@ public:
             return "";
         }
         int gcdLength = gcd(str1.size(), str2.size());
-        return str1.substr(0, gcdLength);
+        return str2.substr(0, gcdLength);
     }
 };
