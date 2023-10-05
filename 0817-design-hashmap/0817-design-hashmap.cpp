@@ -56,7 +56,7 @@ private:
     std::vector<Bucket> hash_table;
 
 public:
-    MyHashMap() : key_space(1501), hash_table(key_space) {}
+    MyHashMap() : key_space(2069), hash_table(key_space) {}
 
     void put(int key, int value) {
         int hash_key = key % key_space;
