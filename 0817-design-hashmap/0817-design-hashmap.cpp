@@ -12,7 +12,7 @@ public:
 
 class Bucket {
 private:
-    std::list<Pair<int, int>> bucket;
+    std::vector<Pair<int, int>> bucket;
 
 public:
     Bucket() {}
