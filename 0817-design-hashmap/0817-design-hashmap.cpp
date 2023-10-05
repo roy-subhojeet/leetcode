@@ -10,7 +10,7 @@ public:
 
 class Bucket {
 private:
-    std::vector<Pair<int, int>> bucket;
+    std::vector<pair<int, int>> bucket;
 
 public:
     Bucket() {}
