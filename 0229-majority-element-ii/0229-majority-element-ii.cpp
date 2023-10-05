@@ -4,7 +4,7 @@ public:
   {
 	  int candidateA(-1), candidateB(-1), countA(0), countB(0);
     
-	  for (const auto & elem: a) 
+	  for (auto elem: a) 
 	  {
 		  if (elem == candidateA) countA++;
 		  else if (elem == candidateB) countB++;
@@ -14,7 +14,7 @@ public:
      }
       
      countA = countB = 0;
-     for (const auto & elem: a)
+     for (auto elem: a)
 		 if (elem == candidateA) countA++;
 		 else if (elem == candidateB) countB++;
   
