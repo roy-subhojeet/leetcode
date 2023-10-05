@@ -1,6 +1,4 @@
 #include <vector>
-#include <list>
-
 template<typename U, typename V>
 class Pair {
 public:
@@ -36,7 +34,7 @@ public:
             }
         }
         if (!found) {
-            bucket.emplace_back(key, value);
+            bucket.push_back({key, value});
         }
     }
 
