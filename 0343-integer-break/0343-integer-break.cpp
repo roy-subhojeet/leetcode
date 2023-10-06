@@ -24,12 +24,10 @@ public:
 
 /*
 In the integerBreak function:
-
 if(n <= 3) return n-1;
 This condition handles the base cases for the problem. When n is 2, the maximum product is 1 * 1 = 1, which is 2-1. When n is 3, the maximum product is 1 * 2 = 2, which is 3-1. So, for n values of 2 and 3, the function directly returns n-1.
 
 In the dp function:
-
 if(n <= 3) return n;
 This condition is for the recursive function dp. When the recursive function is called with a value of n that is less than or equal to 3, it should return n itself. This is because, during the recursion, if we have a value of n that is 2 or 3, we don't want to break it further (as breaking it would reduce the product). For example, if we have a value of 3 during the recursion, we want to use the entire 3 rather than breaking it into 1 * 2.
 
