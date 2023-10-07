@@ -12,9 +12,11 @@ public:
     }
     
     bool dp(int i) {
+        cout << i << endl;
         if (i < 0) return true;
         
         if (memo[i] != -1) {
+            cout << "memo" << i << endl;
             return memo[i] == 1;
         }
         
@@ -26,11 +28,12 @@ public:
             }
 
             if (s.substr(i - currSize + 1, currSize) == word && dp(i - currSize)) {
+                cout << i << endl;
                 memo[i] = 1;
                 return true;
             }
         }
-        
+        cout << i << endl;
         memo[i] = 0;
         return false;
     }
