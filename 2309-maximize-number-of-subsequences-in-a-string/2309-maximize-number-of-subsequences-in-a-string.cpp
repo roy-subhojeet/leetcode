@@ -1,32 +1,25 @@
 class Solution {
 public:
-    long long maximumSubsequenceCount(string text, string pat) {
-        long long ans1=0,ans2=0;
+    long long maximumSubsequenceCount(string text, string pattern) {
+        long long countLeft = 1;
+        long long max_l = 0;
+        for(auto &c: text)
+        {
+            if(c == pattern[1]) 
+            {
 
-        
-//         loop for calculate the answer if pattern[0] is in the begingging
-        int m=1;
-        for(int i=0;i<text.size();i++){
-             if(pat[1]==text[i]){
-                long long tp=m*1;
-                ans1+=tp;
+                max_l += countLeft;
             }
-            if(pat[0]==text[i]){
-                m++;
-            }
+            if(c == pattern[0]) ++countLeft;
         }
-//         loof for calculate teh answer if pattern[1] if in the end
-        int p=1;
-        for(int i=text.size()-1;i>=0;i--){
-             if(pat[0]==text[i]){
-                long long tp=p*1;
-                ans2+=tp;
-            }
-            if(pat[1]==text[i]){
-                p++;
-            }
+        long long countRight = 1;
+        long long max_r = 0;
+        for(int i = text.size()-1; i >=0; --i)
+        {
+            if(text[i] == pattern[0]) max_r += countRight;
+            if(text[i] == pattern[1]) ++countRight;
         }
-        return max(ans1,ans2);
+        return max(max_l, max_r);
         
     }
 };
