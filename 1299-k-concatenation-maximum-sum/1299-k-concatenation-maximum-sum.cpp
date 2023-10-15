@@ -11,7 +11,7 @@ public:
         for(int i:arr) sum+=i;
         if(sum>0)
         {
-            res=(long long int)(k-2)*sum%M;
+            res=(long long int)(k-2)*sum%M; //since sum > 0 best Sum in arr2(concat. array) + (k-2) * running sum would give the largest.
             res=(res+largest(arr2))%M;
         }
         else
