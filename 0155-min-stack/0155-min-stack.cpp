@@ -1,62 +1,49 @@
-#include <cstddef>
-#include <limits.h>
-
-//template <typename T>
-class MinStack{
-    private:
-        struct Node{
+class MinStack
+{
+	private:
+        struct ListNode
+        {
+            ListNode* next;
             int val;
-            Node *next;
             int minVal = INT_MAX;
+            ListNode(int val) : val(val), next(nullptr){}
         };
-    //size_t stackSize = 0;
-    Node *topNode = nullptr; 
+        ListNode* tail = new ListNode(INT_MAX);
+        ListNode* curr = tail;
 
-    public:
-    MinStack(){}
+	public:
+	MinStack(){}
 
-    ~ MinStack(){
-        while(topNode)
-        {
-            pop();
-        }
-    }
-    void push(const int &val)
+	~MinStack()
     {
-        Node *newNode = new Node;
-        if(topNode && topNode->minVal < val)  newNode->minVal = topNode->minVal;
-        else 
+        while(curr != nullptr)
         {
-            newNode->minVal = val;
+            ListNode* next = curr->next;
+            delete curr;
+            curr = next;
         }
-        newNode->val = val;
-        newNode->next = topNode;
-        topNode = newNode;
     }
-
-    void pop()
+	void push(int val)
+	{
+		ListNode* newNode = new ListNode(val);
+        if(tail->minVal > val) newNode->minVal = val;
+        else  newNode->minVal = tail->minVal;
+		newNode->next = tail;
+		tail = newNode;
+    }
+	void pop()
     {
-        if(topNode != nullptr)
-        {
-            Node *tempNode = topNode;
-            topNode = tempNode->next;
-            delete tempNode;
-        }
+        if(tail->next == nullptr) return;
+        ListNode *temp = tail;
+        tail = tail->next;
+        delete temp;
     }
-
     int top()
     {
-        if(topNode != nullptr)
-        {
-            return topNode->val;
-        }
-        return NULL;
+        return tail->val;
     }
-
     int getMin()
     {
-        if(topNode) return topNode->minVal;       
-        return NULL;
+        return tail->next == nullptr ? -1: tail->minVal;
     }
-
 };
