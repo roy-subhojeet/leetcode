@@ -1,16 +1,22 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        vector<vector<int>> res(rowIndex + 1);
+        if(rowIndex == 0) return {1};
+        if(rowIndex == 1) return {1, 1};
+        vector<vector<int>> res(rowIndex+1, vector<int>());
+        res[0] = {1};
+        res[1] = {1,1};
 
-        for (int i = 0; i <= rowIndex; ++i) {
-            res[i].resize(i + 1);
-            res[i][0] = res[i][i] = 1;
-            for (int j = 1; j < i; ++j) {
-                res[i][j] = res[i-1][j-1] + res[i-1][j];
+        for(int i = 2; i < rowIndex+1; ++i)
+        {
+            res[i].push_back(1);
+            for(int j = 1; j < i; ++j)
+            {
+                res[i].push_back(res[i-1][j-1] + res[i-1][j]);
             }
+            res[i].push_back(1);
         }
-
         return res[rowIndex];
+
     }
 };
