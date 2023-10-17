@@ -19,6 +19,7 @@ public:
         if(temp && curr->val == temp->val)
         {
             curr->next = temp->next;
+            delete temp;
         }
         else curr = temp;
     }
