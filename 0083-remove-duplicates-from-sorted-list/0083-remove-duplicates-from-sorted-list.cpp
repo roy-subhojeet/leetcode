@@ -20,7 +20,7 @@ public:
         {
             curr->next = temp->next;
             //curr = temp->next;
-            //delete temp;
+            delete temp;
         }
         else curr = temp;
     }
