@@ -23,7 +23,6 @@ public:
         curr = curr->next;
         ++cnt;
     }
-    cout << cnt;
     if(k > cnt) k = k%cnt;
     if(k == 0 || cnt == k || cnt == 1) return head;
     prev->next = head;
