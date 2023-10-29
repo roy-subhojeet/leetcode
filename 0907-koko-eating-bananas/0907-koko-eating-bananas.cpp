@@ -13,7 +13,7 @@ public:
 
             for(auto &p : piles)
             {
-                totalHours += (p/(mid)) + (p%mid != 0);
+                totalHours += p/mid + (p%mid != 0);
                 //cout << totalHours << endl;
             }
 
