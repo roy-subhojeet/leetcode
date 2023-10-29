@@ -11,6 +11,65 @@
 class Solution {
 public:
 
+    ListNode* reverseKGroup(ListNode* head, int k) {
+
+        ListNode* curr = head;
+        ListNode* newHead = nullptr;
+        ListNode* tailPrev = nullptr;
+        while(curr)
+        {
+            int len = 0;
+            int K = k;
+            while(K > 0 && curr)
+            {
+                curr = curr->next;
+                --K;
+                ++len;
+            }
+            if(k == len)
+            {
+                ListNode* revHead = reverseLinkedList(head, k);
+                if(newHead == nullptr) newHead = revHead;
+                if(tailPrev != nullptr)
+                {
+                    tailPrev->next = revHead;
+                }
+                tailPrev = head;
+                head = curr;
+            }
+        }
+        if(tailPrev) tailPrev->next = head;
+        return newHead;
+    }
+
+    ListNode* reverseLinkedList(ListNode* head, int k)
+    {
+        ListNode* curr = head;
+        ListNode* prev = nullptr;
+        while(k > 0)
+        {
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+            --k;
+        }
+        return prev;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Recursive Solution
+
     ListNode* reverseList(ListNode* head, int k)
     {
         ListNode* prev = nullptr;
@@ -45,4 +104,5 @@ public:
         return head;
         
     }
+*/
 };
