@@ -1,42 +1,24 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-
 class Solution {
 public:
     TreeNode* ans = nullptr;
+
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         dfs(root, p, q);
         return ans;
     }
 
- TreeNode* dfs(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(root == nullptr) return nullptr;
+    bool dfs(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == nullptr) return false;
 
-        TreeNode* lc = dfs(root->left, p, q);
-        TreeNode* rc = dfs(root->right, p, q);
+        int left = dfs(root->left, p, q) ? 1 : 0;
+        int right = dfs(root->right, p, q) ? 1 : 0;
 
-        // If the current node is either p or q
-        if(root == p || root == q) {
-            if((lc && (lc == p || lc == q)) || (rc && (rc == p || rc == q))) {
-                ans = root;
-            }
-            return root;
-        }
+        int mid = (root == p || root == q) ? 1 : 0;
 
-        // If p and q are found on both sides of the current node
-        if(lc && rc) {
+        if (mid + left + right >= 2) {
             ans = root;
-            return root;
         }
 
-        // If only one of p or q is found
-        return lc ? lc : rc;
+        return (mid + left + right) > 0;
     }
 };
