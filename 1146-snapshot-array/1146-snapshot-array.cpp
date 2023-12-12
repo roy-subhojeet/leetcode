@@ -23,7 +23,28 @@ public:
         return prev(it)->second;
     }
 };
+/* 
 
+The revised version of your SnapshotArray class presents a significant improvement over the initial version in several key aspects:
+
+Memory Efficiency
+Initial Version: It uses a 2D vector array where each sub-vector is initialized with a large size (5*10000). This approach can be extremely memory-inefficient, especially if many elements in the array don't change between snapshots.
+Revised Version: It employs a vector of vectors of pairs (historyRecords), with each pair representing a snapshot ID and the value at that snapshot. This design only stores values when they change, drastically reducing memory usage.
+Time Efficiency
+Initial Version: In the snap function, it copies the entire state of the array for each snapshot, which is time-consuming, especially for large arrays where few elements change.
+Revised Version: The snap function merely increments the snapId without needing to copy or iterate over the array. This is a much more efficient operation, especially for large arrays.
+Complexity and Performance
+Initial Version: Complexity increases as the array size and number of snapshots grow because it stores every value at every snapshot, even if unchanged.
+Revised Version: It optimizes storage by keeping a history of changes only. The use of upper_bound in the get function allows for efficient retrieval of the value at a particular snapshot, as it performs a binary search.
+Scalability
+Initial Version: Due to its inefficient use of memory and time, it scales poorly with larger data sizes and more snapshots.
+Revised Version: Scales better due to its efficient use of resources. It's more suitable for scenarios with a large number of snapshots or array elements.
+Functional Improvement
+Revised Version: It ensures that each set operation is associated with the current snapshot, which aligns better with the expected functionality of a snapshot array.
+Error Handling and Robustness
+While both versions lack explicit error handling (like out-of-bounds checks), the revised version's approach is inherently safer due to its efficient use of resources and reduced likelihood of memory-related issues.
+In summary, the revised version is superior in terms of memory efficiency, time efficiency, complexity, performance, scalability, and alignment with the expected functionality of a snapshot array.
+*/
 /* Initial Point of Failure
 class SnapshotArray {
 public:
