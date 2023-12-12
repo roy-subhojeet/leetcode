@@ -46,6 +46,7 @@ While both versions lack explicit error handling (like out-of-bounds checks), th
 In summary, the revised version is superior in terms of memory efficiency, time efficiency, complexity, performance, scalability, and alignment with the expected functionality of a snapshot array.
 */
 /* Initial Point of Failure
+Can be fixed using map
 class SnapshotArray {
 public:
     vector<vector<int>> array;
@@ -70,6 +71,41 @@ public:
         return array[index][snap_id];
     }
 };
+
+MAP solution
+class SnapshotArray {
+public:vector<map<int,int>>v;
+int s=0;
+    SnapshotArray(int length)
+     {
+        v.resize(length);
+        for(int i=0;i<length;i++)
+        {
+            v[i][0]=0;
+        }
+    }
+    void set(int index, int val)
+     {
+        v[index][s]=val;
+    }   
+    int snap()
+     {
+        s++;
+       return s-1;
+    }   
+    int get(int index, int snap_id) 
+    {
+        if(v[index].find(snap_id)==v[index].end())
+        {
+            auto it= --v[index].lower_bound(snap_id);
+            return it->second;
+        }
+        return v[index][snap_id];
+    }
+};
+
+//Must Upvote
+
 */
 /**
  * Your SnapshotArray object will be instantiated and called as such:
