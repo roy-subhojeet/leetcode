@@ -1,35 +1,31 @@
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<vector<int>> adjacencyList(numCourses);
-        vector<int> inDegree(numCourses, 0);
-        for (auto prereq: prerequisites)
+        vector<int> inDegreeV(numCourses);
+        vector<vector<int>> adjMat(numCourses, vector<int>());
+        for(auto & n : prerequisites)
         {
-            adjacencyList[prereq[1]].push_back(prereq[0]);
-            inDegree[prereq[0]]++;
+            adjMat[n[1]].push_back(n[0]);
+            inDegreeV[n[0]]++;
         }
-        stack<int> stk;
-        for(int i = 0; i < numCourses; i++)
-        {
-            if (inDegree[i] == 0)
-                stk.push(i);
+        queue<int> q;
+        for(int i = 0; i < numCourses; ++i) {
+            
+            if(inDegreeV[i] == 0) q.push(i); // Push the course number (index), not the in-degree.
         }
-        int removedDependency = 0;
-        while(!stk.empty())
+
+        vector<int> topoOrderedList;
+        while(!q.empty())
         {
-            int course = stk.top();
-            cout<<course <<endl;
-            removedDependency++;
-            stk.pop();
-            cout << "for >>"<<endl;
-            for (auto cou: adjacencyList[course])
+            auto topE = q.front();
+            q.pop();
+            topoOrderedList.push_back(topE);
+            for(auto & l : adjMat[topE])
             {
-                cout << cou;
-                --inDegree[cou];
-                if(inDegree[cou] == 0)
-                    stk.push(cou);
+                --inDegreeV[l];
+                if(inDegreeV[l] == 0) q.push(l);
             }
         }
-        return (removedDependency == numCourses);
+        return topoOrderedList.size() == numCourses;
     }
 };
