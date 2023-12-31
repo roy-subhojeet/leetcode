@@ -41,7 +41,6 @@ public:
             }
         }
 
-        // Initialize a variable to store the maximum time needed to reach any node.
         int dis = INT_MIN;
         // Iterate over the minTimeToNode array to find the maximum time.
         for(int i = 1; i < minTimeToNode.size(); ++i) dis = max(dis, minTimeToNode[i]);
