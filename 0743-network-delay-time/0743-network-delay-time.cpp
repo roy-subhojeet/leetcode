@@ -35,7 +35,7 @@ public:
                 // update the time to reach the neighbor.
                 if(minTimeToNode[neighbor.first] > s.first+neighbor.second) {
                     minTimeToNode[neighbor.first] = s.first+neighbor.second;
-                    // Add the neighbor to the priority queue with the updated time.
+                    // Add the neighbor to the priority queue with the updated time
                     pq.push({s.first+neighbor.second, neighbor.first});
                 }
             }
