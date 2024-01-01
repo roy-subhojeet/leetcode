@@ -17,7 +17,7 @@ public:
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         
         // Start from node 'k' with an initial time of 0 and add it to the priority queue.
-        pq.push({k, 0});
+        pq.push({0, k});
         
         // Initialize a vector to store the minimum time to reach each node. Set all times to INT_MAX initially.
         vector<int> minTimeToNode(n+1, INT_MAX);
@@ -30,13 +30,13 @@ public:
             pq.pop();
 
             // Iterate over all neighbors of the current node.
-            for(auto &neighbor : adjMat[s.first]) {
+            for(auto &neighbor : adjMat[s.second]) {
                 // If the time to reach the neighbor via the current node is less than the previously known time,
                 // update the time to reach the neighbor.
-                if(minTimeToNode[neighbor.first] > s.second+neighbor.second) {
-                    minTimeToNode[neighbor.first] = s.second+neighbor.second;
+                if(minTimeToNode[neighbor.first] > s.first+neighbor.second) {
+                    minTimeToNode[neighbor.first] = s.first+neighbor.second;
                     // Add the neighbor to the priority queue with the updated time.
-                    pq.push({neighbor.first, s.second+neighbor.second});
+                    pq.push({s.first+neighbor.second, neighbor.first});
                 }
             }
         }
@@ -51,6 +51,7 @@ public:
     }
 
 };
+
 /*
 class Solution {
 public:
