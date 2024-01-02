@@ -17,7 +17,9 @@ public:
     {
         if(root == nullptr) return;
         inOrderTraversal(root->left);
+        
         array.push_back(root->val);
+        
         inOrderTraversal(root->right);
     }
 
