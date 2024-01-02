@@ -1,22 +1,49 @@
 class Solution {
+private:
+    TreeNode* prev = nullptr;
+
 public:
-    bool validate(TreeNode* root, TreeNode* low, TreeNode* high) {
-        // Empty trees are valid BSTs.
+/*
+Why Checking Only the Last Added Node Works
+Inorder Property: In a BST, the inorder traversal yields nodes in a sorted, ascending order.
+Local Validity Implies Global Validity: If every node, when compared to its immediate predecessor (prev in this case), maintains the BST property (i.e., each node is greater than its previous node), then the entire tree is a valid BST.
+Efficiency: This method is efficient because it only requires constant space for the prev pointer and checks each node exactly once.
+*/
+    bool isValidBST(TreeNode* root) {
+        return inorder(root);
+    }
+
+    bool inorder(TreeNode* root) {
         if (root == nullptr) {
             return true;
         }
-
-        // The current node's value must be between low and high.
-        if ((low != nullptr and root->val <= low->val) or
-            (high != nullptr and root->val >= high->val)) {
+        if (!inorder(root->left)) {
             return false;
         }
-
-        // The left and right subtree must also be valid.
-        return validate(root->left, low, root) and validate(root->right, root, high);
+        if (prev != nullptr && root->val <= prev->val) {
+            return false;
+        }
+        prev = root;
+        return inorder(root->right);
     }
-
+/* recursive traversal with valid range
     bool isValidBST(TreeNode* root) {
-        return validate(root, nullptr, nullptr);
+        return inorder(root);
     }
+
+    bool inorder(TreeNode* root) {
+        if (root == nullptr) {
+            return true;
+        }
+        if (!inorder(root->left)) {
+            return false;
+        }
+        if (prev != nullptr && root->val <= prev->val) {
+            return false;
+        }
+        prev = root;
+        return inorder(root->right);
+    }
+*/
 };
+
